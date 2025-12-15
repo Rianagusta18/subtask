@@ -1,132 +1,422 @@
-@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap");
+/* ====== RESET SEDIKIT ====== */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "SF Pro Text",
+    "Segoe UI", sans-serif;
+}
 
 body {
-  font-family: "Poppins", sans-serif;
-  margin: 0;
-  background: linear-gradient(135deg, #1d2671, #c33764);
-  color: #fff;
   min-height: 100vh;
   display: flex;
   flex-direction: column;
+  justify-content: space-between;
+  align-items: stretch;
+  background: radial-gradient(circle at top left, #ff9a9e 0%, #6a82fb 50%, #2b5876 100%);
+  color: #fff;
+  padding: 24px 12px;
 }
 
-header {
-  text-align: center;
-  padding: 40px 20px;
-}
+/* ====== LAYOUT WRAPPER ====== */
 
-header h1 {
-  margin-bottom: 10px;
-  font-size: 2rem;
-  animation: fadeInDown 1s ease;
-}
-
-main {
-  flex: 1;
+.wrapper {
+  width: 100%;
+  max-width: 1100px;
+  margin: 0 auto;
   display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 30px;
-  padding: 20px 40px;
+  grid-template-columns: 1fr;
+  gap: 24px;
 }
+
+/* ====== CARD / CONTAINER ====== */
 
 .card {
-  background: rgba(255, 255, 255, 0.1);
-  border-radius: 20px;
-  padding: 30px;
-  backdrop-filter: blur(10px);
-  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
-  transition: transform 0.3s ease;
+  background: rgba(15, 23, 42, 0.86);
+  border-radius: 26px;
+  padding: 28px 26px 24px;
+  box-shadow:
+    0 22px 45px rgba(0, 0, 0, 0.4),
+    0 0 0 1px rgba(255, 255, 255, 0.06);
+  backdrop-filter: blur(18px);
 }
 
-.card:hover {
-  transform: translateY(-5px);
+/* ====== TYPO & BUTTON ====== */
+
+h2 {
+  font-size: 26px;
+  font-weight: 700;
+  margin-bottom: 6px;
 }
 
-.upload-card h2,
-.list-card h2 {
-  color: #ffe;
-  margin-bottom: 15px;
+.subtitle {
+  font-size: 14px;
+  opacity: 0.85;
+  margin-bottom: 20px;
 }
 
-form {
+.form-group {
+  margin-bottom: 14px;
   display: flex;
   flex-direction: column;
+  gap: 6px;
 }
 
 label {
-  margin-top: 10px;
-  margin-bottom: 5px;
+  font-size: 14px;
+  font-weight: 500;
 }
 
 input[type="text"],
+input[type="password"],
+input[type="email"],
 input[type="file"] {
-  padding: 10px;
-  border-radius: 10px;
-  border: none;
+  border-radius: 999px;
+  border: 1px solid rgba(148, 163, 184, 0.55);
+  padding: 10px 14px;
+  font-size: 15px;
+  background: rgba(15, 23, 42, 0.9);
+  color: #e5e7eb;
   outline: none;
+  transition: border 0.15s ease, box-shadow 0.15s ease, background 0.15s ease,
+    transform 0.08s ease;
 }
 
-button {
-  margin-top: 20px;
-  padding: 12px;
-  background: #00b4d8;
-  color: #fff;
+input[type="text"]:focus,
+input[type="password"]:focus,
+input[type="email"]:focus {
+  border-color: #38bdf8;
+  box-shadow: 0 0 0 1px rgba(56, 189, 248, 0.4);
+  background: rgba(15, 23, 42, 0.98);
+  transform: translateY(-1px);
+}
+
+input::file-selector-button {
   border: none;
-  border-radius: 10px;
-  font-weight: bold;
+  border-radius: 999px;
+  padding: 6px 12px;
+  margin-right: 8px;
+  font-size: 13px;
+  background: #06b6d4;
+  color: #0f172a;
   cursor: pointer;
-  transition: background 0.3s;
 }
 
-button:hover {
-  background: #0096c7;
+.btn {
+  border: none;
+  border-radius: 999px;
+  padding: 10px 18px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: transform 0.1s ease, box-shadow 0.1s ease, opacity 0.1s ease;
+  white-space: nowrap;
 }
 
-#statusMsg {
-  margin-top: 15px;
-  font-style: italic;
+.btn.primary {
+  background: linear-gradient(135deg, #06b6d4, #3b82f6);
+  color: #0f172a;
+  box-shadow: 0 10px 22px rgba(15, 23, 42, 0.5);
+}
+
+.btn.primary:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 14px 26px rgba(15, 23, 42, 0.65);
+}
+
+.btn:active {
+  transform: translateY(0);
+  box-shadow: 0 6px 16px rgba(15, 23, 42, 0.5);
+}
+
+/* variasi ukuran tombol */
+.btn.btn-small {
+  padding: 7px 12px;
+  font-size: 12px;
+}
+
+.btn.btn-xsmall {
+  padding: 4px 8px;
+  font-size: 11px;
+}
+
+/* ====== MESSAGE / HINT ====== */
+
+.message {
+  margin-top: 8px;
+  font-size: 13px;
+  min-height: 18px;
+}
+
+.message.success {
+  color: #6ee7b7;
+}
+
+.message.error {
+  color: #fecaca;
+}
+
+.hint {
+  font-size: 12px;
+  opacity: 0.7;
+}
+
+/* ====== TABLE ====== */
+
+.table-wrapper {
+  margin-top: 8px;
+  max-height: 420px;
+  overflow: auto;
+  border-radius: 18px;
+  border: 1px solid rgba(148, 163, 184, 0.5);
+  background: rgba(15, 23, 42, 0.7);
+}
+
+/* untuk HP kecil: allow horizontal scroll */
+.table-wrapper::-webkit-scrollbar {
+  height: 6px;
+  width: 6px;
+}
+.table-wrapper::-webkit-scrollbar-thumb {
+  background: rgba(148, 163, 184, 0.7);
+  border-radius: 999px;
 }
 
 table {
   width: 100%;
   border-collapse: collapse;
-  background: rgba(255, 255, 255, 0.1);
-  border-radius: 10px;
-  overflow: hidden;
+  font-size: 15px;
+}
+
+thead {
+  background: rgba(15, 23, 42, 0.95);
+  position: sticky;
+  top: 0;
+  backdrop-filter: blur(10px);
+  z-index: 1;
 }
 
 th,
 td {
-  padding: 10px;
+  padding: 11px 14px;
   text-align: left;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.2);
 }
 
 th {
-  background: rgba(255, 255, 255, 0.15);
+  font-weight: 600;
+  font-size: 13px;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+  color: #cbd5f5;
 }
+
+tbody tr:nth-child(even) {
+  background: rgba(15, 23, 42, 0.8);
+}
+
+tbody tr:nth-child(odd) {
+  background: rgba(15, 23, 42, 0.9);
+}
+
+tbody tr {
+  transition: background 0.15s ease, transform 0.05s ease;
+}
+
+tbody tr:hover {
+  background: rgba(56, 189, 248, 0.2);
+  transform: translateY(-1px);
+}
+
+td.empty {
+  text-align: center;
+  font-size: 13px;
+  opacity: 0.8;
+}
+
+/* kolom aksi */
+.table-actions {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.table-actions a.link-view {
+  font-size: 12px;
+  text-decoration: underline;
+  color: #bfdbfe;
+  cursor: pointer;
+}
+
+/* ====== MODAL ====== */
+
+.modal {
+  position: fixed;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.15s ease;
+  z-index: 50;
+}
+
+.modal.show {
+  pointer-events: auto;
+  opacity: 1;
+}
+
+.modal-backdrop {
+  position: absolute;
+  inset: 0;
+  background: rgba(15, 23, 42, 0.65);
+  backdrop-filter: blur(4px);
+}
+
+.modal-content {
+  position: relative;
+  width: 100%;
+  max-width: 460px;
+  background: rgba(15, 23, 42, 0.98);
+  border-radius: 24px;
+  padding: 22px 24px 18px;
+  z-index: 51;
+  box-shadow:
+    0 20px 40px rgba(0, 0, 0, 0.7),
+    0 0 0 1px rgba(148, 163, 184, 0.45);
+}
+
+.modal-content h3 {
+  font-size: 20px;
+  margin-bottom: 4px;
+}
+
+.modal-info {
+  font-size: 13px;
+  opacity: 0.8;
+  margin-bottom: 10px;
+}
+
+.modal-close {
+  position: absolute;
+  top: 8px;
+  right: 10px;
+  border: none;
+  background: transparent;
+  color: #e5e7eb;
+  font-size: 22px;
+  cursor: pointer;
+}
+
+/* history list */
+.history {
+  margin-top: 14px;
+  border-top: 1px solid rgba(148, 163, 184, 0.3);
+  padding-top: 10px;
+  max-height: 210px;
+  overflow: auto;
+  font-size: 13px;
+}
+
+.history ul {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.history li {
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+}
+
+/* ====== FOOTER ====== */
 
 footer {
   text-align: center;
-  padding: 15px;
-  background: rgba(0, 0, 0, 0.3);
-  font-size: 0.9rem;
+  padding: 16px 8px 4px;
+  font-size: 12px;
+  opacity: 0.9;
 }
 
-/* ANIMASI */
-@keyframes fadeInDown {
-  from {
-    opacity: 0;
-    transform: translateY(-20px);
+/* ====== RESPONSIVE ====== */
+
+/* Tablet landscape / kecil */
+@media (max-width: 1024px) {
+  body {
+    padding: 20px 10px;
   }
-  to {
-    opacity: 1;
-    transform: translateY(0);
+
+  .card {
+    padding: 24px 20px;
+  }
+
+  .table-wrapper {
+    max-height: 360px;
   }
 }
 
+/* Tablet & HP besar */
 @media (max-width: 768px) {
-  main {
-    grid-template-columns: 1fr;
+  .wrapper {
+    max-width: 100%;
+  }
+
+  .card {
+    border-radius: 22px;
+    padding: 22px 18px 18px;
+  }
+
+  h2 {
+    font-size: 22px;
+  }
+
+  table {
+    font-size: 14px;
+  }
+
+  th,
+  td {
+    padding: 9px 10px;
+  }
+
+  .table-wrapper {
+    max-height: 320px;
+  }
+}
+
+/* HP kecil */
+@media (max-width: 480px) {
+  body {
+    padding: 16px 8px;
+  }
+
+  .card {
+    padding: 20px 14px 16px;
+    border-radius: 20px;
+  }
+
+  h2 {
+    font-size: 20px;
+  }
+
+  .subtitle {
+    font-size: 13px;
+    margin-bottom: 14px;
+  }
+
+  .table-wrapper {
+    max-height: 280px;
+    overflow-x: auto;
+  }
+
+  table {
+    min-width: 480px; 
+  }
+
+  .history {
+    max-height: 200px;
   }
 }

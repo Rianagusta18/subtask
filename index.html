@@ -2,83 +2,100 @@
 <html lang="id">
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Portal Tugas Kriptografi 7.6</title>
     <link rel="stylesheet" href="style.css" />
   </head>
   <body>
-    <header>
-      <h1>💻 Portal Tugas Kriptografi 7.6</h1>
-      <p>
-        Kumpulkan tugasmu di sini dan pantau status pengumpulan seluruh kelas.
-      </p>
-    </header>
+    <div class="wrapper">
+      <!-- UTAMA: Daftar Mahasiswa -->
+      <section class="card card-right">
+        <h2>Daftar Mahasiswa Pengumpulan Tugas</h2>
+        <p class="subtitle">
+          Klik tombol di kolom aksi untuk melihat atau mengisi link tugas.
+        </p>
 
-    <main>
-      <!-- CARD UPLOAD -->
-      <section class="card upload-card">
-        <h2>📤 Upload Tugas</h2>
-        <form id="uploadForm">
-          <label for="nama">Nama Mahasiswa</label>
-          <input
-            type="text"
-            id="nama"
-            placeholder="Masukkan nama lengkap"
-            required
-          />
+        <div class="table-wrapper">
+          <table id="students-table">
+            <thead>
+              <tr>
+                <th>Nama</th>
+                <th>NIM</th>
+                <th>Total Tugas</th>
+                <th>Aksi</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td colspan="4" class="empty">
+                  Belum ada mahasiswa terdaftar.
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+    </div>
 
-          <label for="nim">NIM</label>
-          <input type="text" id="nim" placeholder="Masukkan NIM" required />
+    <!-- MODAL: Upload Tugas (Link) -->
+    <div id="upload-modal" class="modal">
+      <div class="modal-backdrop"></div>
 
-          <label for="file">File Tugas (PDF/DOCX/ZIP)</label>
-          <input type="file" id="file" required />
+      <div class="modal-content">
+        <button id="modal-close" class="modal-close">&times;</button>
 
-          <button type="submit">Unggah Tugas</button>
+        <h3>Upload / Update Link Tugas</h3>
+        <p id="modal-student-info" class="modal-info">
+          <!-- diisi via JS: "Ilham (NIM 12345678)" -->
+        </p>
+
+        <form id="form-upload">
+          <input type="hidden" id="upload-student-id" />
+
+          <div class="form-group">
+            <label for="upload-password">Sandi</label>
+            <input
+              type="password"
+              id="upload-password"
+              required
+              placeholder="Masukkan sandi saat daftar"
+            />
+          </div>
+
+          <div class="form-group">
+            <label for="upload-task">Tugas ke-berapa?</label>
+            <input
+              type="text"
+              id="upload-task"
+              required
+              placeholder="Contoh: Tugas 1 / UTS / Project Akhir"
+            />
+          </div>
+
+          <div class="form-group">
+            <label for="upload-link">Link Tugas</label>
+            <input
+              type="text"
+              id="upload-link"
+              required
+              placeholder="https://contoh-link-tugas.com"
+            />
+          </div>
+
+          <button type="submit" class="btn primary">Simpan Link Tugas</button>
+          <p id="upload-message" class="message"></p>
         </form>
-        <p id="statusMsg"></p>
-      </section>
 
-      <!-- CARD LIST -->
-      <section class="card list-card">
-        <h2>📚 Daftar Tugas Terkumpul</h2>
-        <table id="taskTable">
-          <thead>
-            <tr>
-              <th>Nama</th>
-              <th>NIM</th>
-              <th>File</th>
-              <th>Tanggal</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td colspan="4" style="text-align: center">
-                Belum ada tugas terkumpul.
-              </td>
-            </tr>
-          </tbody>
-        </table>
-      </section>
-    </main>
+        <!-- Riwayat tugas -->
+        <div id="upload-history" class="history">
+          <!-- diisi via JS -->
+        </div>
+      </div>
+    </div>
 
     <footer>
-      <p>© 2025 Portal Tugas Kriptografi 7.6 — Dirancang oleh Rian Agusta</p>
+      <p>© 2025 Portal Tugas Kriptografi 7.6 — Dirancang oleh Rian & Ilham</p>
     </footer>
-
-    <script>
-      // Animasi tombol upload
-      const form = document.getElementById("uploadForm");
-      const statusMsg = document.getElementById("statusMsg");
-
-      form.addEventListener("submit", (e) => {
-        e.preventDefault();
-        statusMsg.textContent = "🚀 Mengunggah tugas... (simulasi)";
-        setTimeout(() => {
-          statusMsg.textContent =
-            "✅ Tugas berhasil diunggah! (tahap Firebase nanti)";
-          form.reset();
-        }, 1500);
-      });
-    </script>
+    <script src="config.js"></script>
+    <script src="app.js"></script>
   </body>
 </html>

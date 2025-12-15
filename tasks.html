@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Daftar Tugas Mahasiswa</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div class="wrapper">
+      <section class="card card-right">
+        <h2>Daftar Tugas Mahasiswa</h2>
+        <p id="student-label" class="subtitle">
+          Memuat data mahasiswa...
+        </p>
+
+        <div class="form-group">
+          <label for="page-password">Sandi (untuk hapus tugas)</label>
+          <input
+            type="password"
+            id="page-password"
+            placeholder="Masukkan sandi yang sama dengan saat daftar"
+          />
+          <p id="page-message" class="message"></p>
+        </div>
+
+        <div class="history" id="tasks-history">
+          <!-- diisi via JS -->
+        </div>
+      </section>
+    </div>
+
+    <footer>
+      <p>© 2025 Portal Tugas Kriptografi 7.6 — Dirancang oleh Rian & Ilham</p>
+    </footer>
+    <script src="config.js"></script>
+    <script src="tasks.js"></script>
+  </body>
+</html>
