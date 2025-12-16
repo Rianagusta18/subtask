@@ -1,303 +1,342 @@
-<!DOCTYPE html>
-<html lang="id">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Portal Tugas Kriptografi 7.6</title>
+  <!DOCTYPE html>
+  <html lang="id">
+    <head>
+      <meta charset="UTF-8" />
+      <meta name="viewport" content="width=device-width, initial-scale=1" />
+      <title>Portal Tugas Kriptografi 7.6</title>
 
-    <!-- ✅ Bootstrap 5 CDN -->
-    <link
-      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
-      rel="stylesheet"
-    />
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+      <!-- ✅ Bootstrap 5 CDN -->
+      <link
+        href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+        rel="stylesheet"
+      />
+      <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 
-    <style>
-      body {
-        background-color: #f8f9fa;
-        font-family: "Poppins", sans-serif;
-        color: #212529;
-      }
-
-      .wrapper {
-        max-width: 1200px;
-        margin: 2rem auto;
-        padding: 1rem;
-      }
-
-      .card-right {
-        background: #fff;
-        border-radius: 12px;
-        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-        padding: 2rem;
-      }
-
-      .card-right h2 {
-        font-size: 1.5rem;
-        font-weight: 600;
-        text-align: center;
-        margin-bottom: 1rem;
-      }
-
-      .subtitle {
-        text-align: center;
-        color: #6c757d;
-        font-size: 0.95rem;
-        margin-bottom: 1.5rem;
-      }
-
-      /* Table */
-      .table-wrapper {
-        overflow-x: auto;
-      }
-
-      table {
-        width: 100%;
-        border-collapse: collapse;
-        font-size: 0.95rem;
-      }
-
-      th,
-      td {
-        text-align: center;
-        padding: 0.75rem;
-        border: 1px solid #dee2e6;
-      }
-
-      thead {
-        background-color: #212529;
-        color: #fff;
-      }
-
-      tr:nth-child(even) {
-        background-color: #f8f9fa;
-      }
-
-      .btn {
-        border-radius: 6px;
-        padding: 0.4rem 0.8rem;
-      }
-
-      .btn.primary {
-        background-color: #198754;
-        color: #fff;
-        border: none;
-      }
-
-      .btn.primary:hover {
-        background-color: #157347;
-      }
-
-      /* ✅ Modal Fix */
-      .modal {
-        display: none; /* default tetap hidden */
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        background-color: rgba(0, 0, 0, 0.5);
-        z-index: 1000;
-        justify-content: center;
-        align-items: center;
-      }
-
-      /* saat JS menambahkan class 'show' atau ubah display ke flex, modal muncul */
-      .modal.active,
-      .modal.show {
-        display: flex !important;
-      }
-
-      .modal-content {
-        background-color: #fff;
-        border-radius: 10px;
-        max-width: 600px;
-        width: 90%;
-        padding: 2rem;
-        position: relative;
-        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
-        animation: fadeInUp 0.3s ease;
-      }
-
-      @keyframes fadeInUp {
-        from {
-          opacity: 0;
-          transform: translateY(20px);
+      <style>
+        /* 🌿 Tema Warna Estetik */
+        :root {
+          --primary: #2ecc71; /* hijau emerald */
+          --primary-dark: #27ae60;
+          --accent: #3498db; /* biru lembut */
+          --bg-light: #f4f6f7;
+          --text-dark: #2d3436;
+          --text-muted: #7f8c8d;
         }
-        to {
-          opacity: 1;
-          transform: translateY(0);
+
+        body {
+          background-color: var(--bg-light);
+          font-family: "Poppins", sans-serif;
+          color: var(--text-dark);
         }
-      }
 
-      .modal-close {
-        position: absolute;
-        top: 10px;
-        right: 20px;
-        border: none;
-        background: transparent;
-        font-size: 1.5rem;
-        cursor: pointer;
-      }
-
-      .form-group {
-        margin-bottom: 1rem;
-      }
-
-      label {
-        font-weight: 500;
-      }
-
-      input[type="text"],
-      input[type="password"] {
-        width: 100%;
-        padding: 0.6rem;
-        border: 1px solid #ced4da;
-        border-radius: 6px;
-        font-size: 0.95rem;
-      }
-
-      input:focus {
-        border-color: #86b7fe;
-        outline: none;
-        box-shadow: 0 0 4px rgba(13, 110, 253, 0.25);
-      }
-
-      .message {
-        margin-top: 0.5rem;
-        text-align: center;
-      }
-
-      .history {
-        margin-top: 1.5rem;
-      }
-
-      footer {
-        text-align: center;
-        margin-top: 2rem;
-        padding: 1rem;
-        background-color: #fff;
-        border-top: 1px solid #dee2e6;
-        font-size: 0.9rem;
-      }
-
-      /* Responsive Font & Table */
-      @media (max-width: 768px) {
-        .card-right {
+        .wrapper {
+          max-width: 1200px;
+          margin: 2rem auto;
           padding: 1rem;
         }
-        table {
-          font-size: 0.85rem;
+
+        .card-right {
+          background: #fff;
+          border-radius: 16px;
+          box-shadow: 0 6px 16px rgba(0, 0, 0, 0.08);
+          padding: 2rem;
+          border-top: 5px solid var(--primary);
         }
+
+        .card-right h2 {
+          font-size: 1.6rem;
+          font-weight: 600;
+          text-align: center;
+          color: var(--primary-dark);
+          margin-bottom: 1rem;
+        }
+
+        .subtitle {
+          text-align: center;
+          color: var(--text-muted);
+          font-size: 0.95rem;
+          margin-bottom: 1.5rem;
+        }
+
+        /* 🌿 Table */
+        .table-wrapper {
+          overflow-x: auto;
+        }
+
+        table {
+          width: 100%;
+          border-collapse: collapse;
+          font-size: 0.95rem;
+        }
+
         th,
         td {
-          padding: 0.5rem;
+          text-align: center;
+          padding: 0.75rem;
+          border: 1px solid #dee2e6;
         }
-      }
 
-      @media (max-width: 576px) {
-        h2 {
-          font-size: 1.2rem;
+        thead {
+          background-color: var(--primary-dark);
+          color: #fff;
         }
-        .subtitle {
-          font-size: 0.85rem;
+
+        tbody tr:nth-child(even) {
+          background-color: #f8f9fa;
         }
-        footer {
-          font-size: 0.8rem;
+
+        tbody tr:hover {
+          background-color: rgba(46, 204, 113, 0.08);
+          transition: 0.2s ease-in-out;
         }
+
+        .btn {
+          border-radius: 6px;
+          padding: 0.45rem 0.9rem;
+          transition: all 0.2s ease-in-out;
+        }
+
+        .btn.primary {
+          background-color: var(--primary);
+          color: #fff;
+          border: none;
+          font-weight: 500;
+        }
+
+        .btn.primary:hover {
+          background-color: var(--primary-dark);
+          transform: translateY(-1px);
+        }
+
+        /* 🌿 Modal */
+        .modal {
+          display: none;
+          position: fixed;
+          top: 0;
+          left: 0;
+          width: 100%;
+          height: 100%;
+          background-color: rgba(0, 0, 0, 0.4);
+          z-index: 1000;
+          justify-content: center;
+          align-items: center;
+        }
+
+        .modal.active,
+        .modal.show {
+          display: flex !important;
+        }
+
         .modal-content {
-          padding: 1.5rem;
+          background-color: #fff;
+          border-radius: 14px;
+          max-width: 600px;
+          width: 90%;
+          padding: 2rem;
+          position: relative;
+          box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+          animation: fadeInUp 0.3s ease;
+          border-top: 5px solid var(--primary);
         }
-      }
-    </style>
-  </head>
 
-  <body>
-    <div class="wrapper">
-      <!-- UTAMA: Daftar Mahasiswa -->
-      <section class="card card-right">
-        <h2>Daftar Mahasiswa Pengumpulan Tugas</h2>
-        <p class="subtitle">
-          Klik tombol di kolom aksi untuk melihat atau mengisi link tugas.
-        </p>
+        @keyframes fadeInUp {
+          from {
+            opacity: 0;
+            transform: translateY(25px);
+          }
+          to {
+            opacity: 1;
+            transform: translateY(0);
+          }
+        }
 
-        <div class="table-wrapper">
-          <table id="students-table">
-            <thead>
-              <tr>
-                <th>Nama</th>
-                <th>NIM</th>
-                <th>Total Tugas</th>
-                <th>Aksi</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td colspan="4" class="empty">
-                  Belum ada mahasiswa terdaftar.
-                </td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
-      </section>
-    </div>
+        .modal-close {
+          position: absolute;
+          top: 10px;
+          right: 20px;
+          border: none;
+          background: transparent;
+          font-size: 1.5rem;
+          color: var(--text-muted);
+          cursor: pointer;
+        }
 
-    <!-- MODAL: Upload Tugas (Link) -->
-    <div id="upload-modal" class="modal">
-      <div class="modal-content">
-        <button id="modal-close" class="modal-close">&times;</button>
+        .modal-close:hover {
+          color: var(--primary-dark);
+        }
 
-        <h3>Upload / Update Link Tugas</h3>
-        <p id="modal-student-info" class="modal-info"></p>
+        .form-group {
+          margin-bottom: 1rem;
+        }
 
-        <form id="form-upload">
-          <input type="hidden" id="upload-student-id" />
+        label {
+          font-weight: 500;
+          color: var(--text-dark);
+        }
 
-          <div class="form-group">
-            <label for="upload-password">Sandi</label>
-            <input
-              type="password"
-              id="upload-password"
-              required
-              placeholder="Masukkan sandi saat daftar"
-            />
+        input[type="text"],
+        input[type="password"] {
+          width: 100%;
+          padding: 0.6rem;
+          border: 1px solid #ced4da;
+          border-radius: 8px;
+          font-size: 0.95rem;
+          transition: all 0.2s ease-in-out;
+        }
+
+        input:focus {
+          border-color: var(--accent);
+          outline: none;
+          box-shadow: 0 0 6px rgba(52, 152, 219, 0.3);
+        }
+
+        .message {
+          margin-top: 0.5rem;
+          text-align: center;
+          color: var(--text-muted);
+        }
+
+        .history {
+          margin-top: 1.5rem;
+          border-top: 1px solid #e9ecef;
+          padding-top: 1rem;
+        }
+
+        footer {
+          text-align: center;
+          margin-top: 2rem;
+          padding: 1rem;
+          background-color: #fff;
+          border-top: 1px solid #dee2e6;
+          font-size: 0.9rem;
+          color: var(--text-muted);
+        }
+
+        footer strong {
+          color: var(--primary-dark);
+        }
+
+        /* 🌿 Responsiveness */
+        @media (max-width: 768px) {
+          .card-right {
+            padding: 1rem;
+          }
+          table {
+            font-size: 0.85rem;
+          }
+          th,
+          td {
+            padding: 0.5rem;
+          }
+        }
+
+        @media (max-width: 576px) {
+          h2 {
+            font-size: 1.2rem;
+          }
+          .subtitle {
+            font-size: 0.85rem;
+          }
+          footer {
+            font-size: 0.8rem;
+          }
+          .modal-content {
+            padding: 1.5rem;
+          }
+        }
+      </style>
+    </head>
+
+    <body>
+      <div class="wrapper">
+        <!-- UTAMA: Daftar Mahasiswa -->
+        <section class="card card-right">
+          <h2>Daftar Mahasiswa Pengumpulan Tugas Kriptografi 7.6</h2>
+
+          <div class="table-wrapper">
+            <table id="students-table">
+              <thead>
+                <tr>
+                  <th>Nama</th>
+                  <th>NIM</th>
+                  <th>Total Tugas</th>
+                  <th>Aksi</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td colspan="4" class="empty">
+                    Belum ada mahasiswa terdaftar.
+                  </td>
+                </tr>
+              </tbody>
+            </table>
           </div>
-
-          <div class="form-group">
-            <label for="upload-task">Tugas ke-berapa?</label>
-            <input
-              type="text"
-              id="upload-task"
-              required
-              placeholder="Contoh: Tugas 1 / UTS / Project Akhir"
-            />
-          </div>
-
-          <div class="form-group">
-            <label for="upload-link">Link Tugas</label>
-            <input
-              type="text"
-              id="upload-link"
-              required
-              placeholder="https://contoh-link-tugas.com"
-            />
-          </div>
-
-          <button type="submit" class="btn primary">Simpan Link Tugas</button>
-          <p id="upload-message" class="message"></p>
-        </form>
-
-        <!-- Riwayat tugas -->
-        <div id="upload-history" class="history"></div>
+        </section>
       </div>
-    </div>
 
-    <footer>
-      <p>© 2025 Portal Tugas Kriptografi 7.6 — Dirancang oleh Rian & Ilham</p>
-    </footer>
+      <!-- MODAL: Upload Tugas (Link) -->
+      <div id="upload-modal" class="modal">
+        <div class="modal-content">
+          <button id="modal-close" class="modal-close">&times;</button>
 
-    <script src="config.js"></script>
-    <script src="app.js"></script>
-  </body>
-</html>
+          <h3 class="text-center text-success mb-3">
+            Upload / Update Link Tugas
+          </h3>
+          <p id="modal-student-info" class="modal-info text-center mb-3"></p>
+
+          <form id="form-upload">
+            <input type="hidden" id="upload-student-id" />
+
+            <div class="form-group">
+              <label for="upload-password">Sandi</label>
+              <input
+                type="password"
+                id="upload-password"
+                required
+                placeholder="Masukkan sandi saat daftar"
+              />
+            </div>
+
+            <div class="form-group">
+              <label for="upload-task">Tugas ke-berapa?</label>
+              <input
+                type="text"
+                id="upload-task"
+                required
+                placeholder="Contoh: Tugas 1 / UTS / Project Akhir"
+              />
+            </div>
+
+            <div class="form-group">
+              <label for="upload-link">Link Tugas</label>
+              <input
+                type="text"
+                id="upload-link"
+                required
+                placeholder="https://contoh-link-tugas.com"
+              />
+            </div>
+
+            <button type="submit" class="btn primary w-100 mt-2">
+              Simpan Link Tugas
+            </button>
+            <p id="upload-message" class="message mt-2"></p>
+          </form>
+
+          <!-- Riwayat tugas -->
+          <div id="upload-history" class="history"></div>
+        </div>
+      </div>
+
+      <footer>
+        <p>
+          © 2025 Portal Tugas Kriptografi 7.6 — Dirancang oleh
+          <strong>Rian & Ilham</strong>
+        </p>
+      </footer>
+
+      <script src="config.js"></script>
+      <script src="app.js"></script>
+    </body>
+  </html>

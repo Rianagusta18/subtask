@@ -13,10 +13,20 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 
     <style>
+      /* 🌿 Tema Warna Estetik Senada */
+      :root {
+        --primary: #2ecc71; /* hijau emerald */
+        --primary-dark: #27ae60;
+        --accent: #3498db; /* biru lembut */
+        --bg-light: #f4f6f7;
+        --text-dark: #2d3436;
+        --text-muted: #7f8c8d;
+      }
+
       body {
-        background-color: #f8f9fa;
+        background-color: var(--bg-light);
         font-family: "Poppins", sans-serif;
-        color: #212529;
+        color: var(--text-dark);
       }
 
       .wrapper {
@@ -27,21 +37,24 @@
 
       .card-right {
         background: #fff;
-        border-radius: 12px;
-        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        border-radius: 16px;
+        box-shadow: 0 6px 16px rgba(0, 0, 0, 0.08);
         padding: 2rem;
+        border-top: 5px solid var(--primary);
       }
 
       h2 {
         text-align: center;
         font-weight: 600;
         margin-bottom: 1rem;
+        color: var(--primary-dark);
       }
 
       .subtitle {
         text-align: center;
-        color: #6c757d;
+        color: var(--text-muted);
         margin-bottom: 1.5rem;
+        font-size: 0.95rem;
       }
 
       .form-group {
@@ -52,25 +65,27 @@
         font-weight: 500;
         margin-bottom: 0.5rem;
         display: block;
+        color: var(--text-dark);
       }
 
       input[type="password"] {
         width: 100%;
         padding: 0.6rem;
         border: 1px solid #ced4da;
-        border-radius: 6px;
+        border-radius: 8px;
         font-size: 0.95rem;
+        transition: all 0.2s ease-in-out;
       }
 
       input[type="password"]:focus {
-        border-color: #86b7fe;
+        border-color: var(--accent);
         outline: none;
-        box-shadow: 0 0 4px rgba(13, 110, 253, 0.25);
+        box-shadow: 0 0 6px rgba(52, 152, 219, 0.3);
       }
 
       .message {
         font-size: 0.9rem;
-        color: #6c757d;
+        color: var(--text-muted);
         margin-top: 0.4rem;
       }
 
@@ -78,9 +93,15 @@
         margin-top: 1.5rem;
         background: #fdfdfd;
         border: 1px solid #dee2e6;
-        border-radius: 8px;
+        border-radius: 10px;
         padding: 1rem;
-        min-height: 100px;
+        min-height: 120px;
+        box-shadow: inset 0 1px 4px rgba(0, 0, 0, 0.03);
+      }
+
+      .history:hover {
+        border-color: var(--primary);
+        transition: 0.2s ease-in-out;
       }
 
       footer {
@@ -90,6 +111,11 @@
         background-color: #fff;
         border-top: 1px solid #dee2e6;
         font-size: 0.9rem;
+        color: var(--text-muted);
+      }
+
+      footer strong {
+        color: var(--primary-dark);
       }
 
       /* Responsiveness */
@@ -145,7 +171,10 @@
     </div>
 
     <footer>
-      <p>© 2025 Portal Tugas Kriptografi 7.6 — Dirancang oleh Rian & Ilham</p>
+      <p>
+        © 2025 Portal Tugas Kriptografi 7.6 — Dirancang oleh
+        <strong>Rian & Ilham</strong>
+      </p>
     </footer>
 
     <script src="config.js"></script>
